@@ -1,8 +1,12 @@
 import './App.css';
 import React from 'react';
 import axios from 'axios';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Login from './components/Login.js';
+import Register from './components/Register.js';
+import Home from './components/Home.js';
 
-class App extends React.Component {
+/*class App extends React.Component {
 
   constructor(props){
     super(props);
@@ -62,6 +66,26 @@ class App extends React.Component {
       </div>
     );
   }
+}*/
+
+function App(){
+  return(
+    <div>
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <Route path="/home">
+            <Home></Home>
+          </Route>
+          <Route path="/register">
+            <Register></Register>
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
