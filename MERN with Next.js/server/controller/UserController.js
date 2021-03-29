@@ -30,5 +30,18 @@ export const getUserByName = async(req, res) => {
 
 //POST /user/login
 export const logUserIn = async(req, res) => {
-    console.log(req.body);
+    const {name, password} = req.body;
+    User.find({'name': name})
+        .exec()
+        .then(user =>{
+            bcrypt.compare(password, user[0].password, (err, result) => {
+                if(err){
+                    return res.status(401).json("Something went wrong");
+                }
+                if(result){
+                    console.log("Passwords match")
+                }
+            })
+        })
+    
 }
