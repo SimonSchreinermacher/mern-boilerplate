@@ -12,8 +12,8 @@ class Login extends React.Component {
     }
 
     handleSubmit(){
-        let newUser = {name: this.state.username, password: this.state.password, email: this.state.email};
-        axios.post("http://localhost:3001/user", newUser)
+        let user = {name: this.state.username, password: this.state.password};
+        axios.post("http://localhost:3001/user/login", user)
           .then(res => {
             console.log(JSON.stringify(res.data));
           })

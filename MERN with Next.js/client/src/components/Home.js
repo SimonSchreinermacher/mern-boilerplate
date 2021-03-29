@@ -3,10 +3,6 @@ import axios from 'axios';
 
 class Home extends React.Component {
 
-    constructor(props){
-        super(props);
-    }
-
     getAllEntries(){
         axios.get("http://localhost:3001/user")
           .then((res) => {

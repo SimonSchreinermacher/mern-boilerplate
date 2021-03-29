@@ -1,7 +1,7 @@
 import User from '../models/UserModel.js';
 
 //POST /user
-export const addUser = async(req, res) => {
+export const registerUser = async(req, res) => {
     const {name, password, email} = req.body;
     const newUser = new User({name, password, email});
     await newUser.save();
@@ -20,3 +20,8 @@ export const getUserByName = async(req, res) => {
     const user = await User.find({'name' : name})
     res.status(200).json(user);
 };
+
+//POST /user/login
+export const logUserIn = async(req, res) => {
+    console.log(req.body);
+}
