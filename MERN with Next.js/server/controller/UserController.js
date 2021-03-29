@@ -1,11 +1,18 @@
 import User from '../models/UserModel.js';
+import bcrypt from 'bcrypt';
 
-//POST /user
-export const registerUser = async(req, res) => {
+//POST /user/register
+export const registerUser = (req, res) => {
     const {name, password, email} = req.body;
-    const newUser = new User({name, password, email});
-    await newUser.save();
-    res.status(201).json("New User with name " + newUser.name + " created");
+    bcrypt.hash(password, 10, (err, hash) =>{
+        if(err){
+            return res.status(500).json({error: err});
+        }
+        const newUser = new User({name: name, password : hash, email: email});
+        newUser.save();
+        res.status(201).json("New User with name " + newUser.name + " created");
+    })
+    
 };
 
 //GET /user

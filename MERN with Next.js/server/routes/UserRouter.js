@@ -4,7 +4,7 @@ import express from 'express';
 const router = express.Router();
 
 router.get("/", getAllUsers);           //GET /user
-router.post("/", registerUser);         //POST /user
+router.post("/register", registerUser); //POST /user
 router.get("/:name", getUserByName);    //GET /user/name
 router.post("/login", logUserIn);       //POST /user/login    
 
