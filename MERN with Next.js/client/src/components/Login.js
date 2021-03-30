@@ -6,13 +6,13 @@ class Login extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            username : "",
+            email : "",
             password: "",
           }
     }
 
     handleSubmit(){
-        let user = {name: this.state.username, password: this.state.password};
+        let user = {email: this.state.email, password: this.state.password};
         axios.post("http://localhost:3001/user/login", user)
           .then(res => {
             console.log(JSON.stringify(res.data));
@@ -28,8 +28,8 @@ class Login extends React.Component {
                 <h1>Login:</h1>
                 <form onSubmit = { this.handleSubmit.bind(this)}>
                     <div>
-                        <p>Username:</p>
-                        <input onChange={(e) => this.setState({username: e.target.value})}></input>
+                        <p>Email:</p>
+                        <input onChange={(e) => this.setState({email: e.target.value})}></input>
                     </div>
                     <div>
                         <p>Password:</p>

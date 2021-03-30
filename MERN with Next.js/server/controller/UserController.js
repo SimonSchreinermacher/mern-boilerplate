@@ -30,8 +30,8 @@ export const getUserByName = async(req, res) => {
 
 //POST /user/login
 export const logUserIn = async(req, res) => {
-    const {name, password} = req.body;
-    User.find({'name': name})
+    const {email, password} = req.body;
+    User.find({'email': email})
         .exec()
         .then(user =>{
             bcrypt.compare(password, user[0].password, (err, result) => {
