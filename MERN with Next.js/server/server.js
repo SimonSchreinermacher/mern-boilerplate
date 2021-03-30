@@ -1,14 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv'
 
+import {PORT, DATABASE_URL} from './config/config.js';
 import userRoutes from './routes/UserRouter.js';
 
 const app = express();
-dotenv.config();
 
 //Setup database
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true});
 const database = mongoose.connection;
 database.once('open', () => console.log("Database initiated"));
 
@@ -41,4 +40,4 @@ app.use(function (req, res, next) {
 app.use('/user', userRoutes);
 
 //Initiate express server
-app.listen(process.env.PORT, () => console.log("Backend Server running on port", process.env.PORT));
+app.listen(PORT, () => console.log("Backend Server running on port", PORT));
