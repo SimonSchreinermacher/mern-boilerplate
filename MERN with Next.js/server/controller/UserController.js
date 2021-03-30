@@ -4,15 +4,23 @@ import bcrypt from 'bcrypt';
 //POST /user/register
 export const registerUser = (req, res) => {
     const {name, password, email} = req.body;
-    bcrypt.hash(password, 10, (err, hash) =>{
-        if(err){
-            return res.status(500).json({error: err});
-        }
-        const newUser = new User({name: name, password : hash, email: email});
-        newUser.save();
-        res.status(201).json("New User with name " + newUser.name + " created");
-    })
-    
+    User.find({'email': email})
+        .exec()
+        .then((user) => {
+            if(user.length > 0){
+                res.status(422).json("Error: Email already in use!");
+            }
+            else{
+                bcrypt.hash(password, 10, (err, hash) =>{
+                    if(err){
+                        return res.status(500).json({error: err});
+                    }
+                    const newUser = new User({name: name, password : hash, email: email});
+                    newUser.save();
+                    res.status(201).json("New User with name " + newUser.name + " created");
+                })
+            }
+        })
 };
 
 //GET /user

@@ -33,12 +33,12 @@ class Register extends React.Component {
                         <input onChange={(e) => this.setState({username: e.target.value})}></input>
                     </div>
                     <div>
-                        <p>Password:</p>
-                        <input onChange={(e) => this.setState({password: e.target.value})}></input>
-                    </div>
-                    <div>
                         <p>Email:</p>
                         <input onChange={(e) => this.setState({email: e.target.value})}></input>
+                    </div>
+                    <div>
+                        <p>Password:</p>
+                        <input onChange={(e) => this.setState({password: e.target.value})}></input>
                     </div>
                     <button type="submit">Register</button>
                 </form>
