@@ -1,5 +1,8 @@
 import User from '../models/UserModel.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+import {TOKEN_SECRET} from '../config/config.js';
 
 //POST /user/register
 export const registerUser = (req, res) => {
@@ -47,7 +50,13 @@ export const logUserIn = async(req, res) => {
                     return res.status(401).json("Something went wrong");
                 }
                 if(result){
-                    console.log("Passwords match")
+                    const token = jwt.sign({username: user[0].name}, TOKEN_SECRET, {expiresIn: '1d'})
+                    console.log(token);
+                    res.status(200).send({token: token});
+                }
+                else{
+                    console.log("Passwords dont match")
+                    res.status(400).send("Password not correct");
                 }
             })
         })

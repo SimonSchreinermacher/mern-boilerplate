@@ -15,7 +15,7 @@ class Login extends React.Component {
         let user = {email: this.state.email, password: this.state.password};
         axios.post("http://localhost:3001/user/login", user)
           .then(res => {
-            console.log(JSON.stringify(res.data));
+            console.log(res.data.token)
           })
           .catch(err => {
             console.log(err);
