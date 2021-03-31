@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 
 
 //Routing
-app.use('/user', userRoutes);
+app.use('/api/user', userRoutes);
 
 //Initiate express server
 app.listen(PORT, () => console.log("Backend Server running on port", PORT));

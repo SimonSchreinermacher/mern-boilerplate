@@ -4,7 +4,7 @@ import axios from 'axios';
 class Home extends React.Component {
 
     getAllEntries(){
-        axios.get("http://localhost:3001/user")
+        axios.get('/api/user')
           .then((res) => {
             for(let x of res.data){
               console.log(x);

@@ -13,7 +13,7 @@ class Login extends React.Component {
 
     handleSubmit(){
         let user = {email: this.state.email, password: this.state.password};
-        axios.post("http://localhost:3001/user/login", user)
+        axios.post('/api/user/login', user)
           .then(res => {
             console.log(res.data.token)
           })
