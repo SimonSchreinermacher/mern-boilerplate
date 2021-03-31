@@ -3,7 +3,9 @@ import axios from 'axios';
 
 class Home extends React.Component {
 
-    getAllEntries(){
+    getAllEntries(e){
+        e.preventDefault();
+
         axios.get('/api/user')
           .then((res) => {
             for(let x of res.data){

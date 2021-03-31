@@ -12,7 +12,9 @@ class Register extends React.Component {
           }
     }
 
-    handleSubmit(){
+    handleSubmit(e){
+
+        e.preventDefault();
         let newUser = {name: this.state.username, password: this.state.password, email: this.state.email};
         axios.post('/api/user/register', newUser)
           .then(res => {
