@@ -33,6 +33,11 @@ class Home extends React.Component {
         this.setState({username: username});
     }
 
+    logout(){
+      localStorage.removeItem('jwtToken');
+      this.props.history.push('/login');
+    }
+
     render(){
         if(validToken()){
           return(
@@ -40,6 +45,10 @@ class Home extends React.Component {
                 <h1>Welcome, {this.state.username}</h1>
                 <form onSubmit={this.getAllEntries.bind(this)}>
                     <button type="submit">Get all entries</button>
+                </form>
+
+                <form onSubmit={this.logout.bind(this)}>
+                  <button type="submit">Log out</button>
                 </form>
             </div>
           );
