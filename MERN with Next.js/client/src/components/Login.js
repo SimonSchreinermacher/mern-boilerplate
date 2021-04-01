@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
+import {validToken} from './Authentication.js';
 
 class Login extends React.Component {
 
@@ -26,22 +28,31 @@ class Login extends React.Component {
       }
 
     render(){
-        return(
-            <div>
-                <h1>Login:</h1>
-                <form onSubmit = { this.handleSubmit.bind(this)}>
-                    <div>
-                        <p>Email:</p>
-                        <input onChange={(e) => this.setState({email: e.target.value})}></input>
-                    </div>
-                    <div>
-                        <p>Password:</p>
-                        <input onChange={(e) => this.setState({password: e.target.value})}></input>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        );
+        if(validToken()){
+            return(
+                <Redirect to="/"></Redirect>
+            );
+
+        }
+        else{
+            return(
+                <div>
+                    <h1>Login:</h1>
+                    <form onSubmit = { this.handleSubmit.bind(this)}>
+                        <div>
+                            <p>Email:</p>
+                            <input onChange={(e) => this.setState({email: e.target.value})}></input>
+                        </div>
+                        <div>
+                            <p>Password:</p>
+                            <input onChange={(e) => this.setState({password: e.target.value})}></input>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            );
+        }
+        
     }
 }
 
