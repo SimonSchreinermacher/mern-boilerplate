@@ -45,17 +45,18 @@ export const logUserIn = async(req, res) => {
     User.find({'email': email})
         .exec()
         .then(user =>{
+            if(user.length === 0){
+                return res.status(400).send("No user with this email is registered");
+            }
             bcrypt.compare(password, user[0].password, (err, result) => {
                 if(err){
                     return res.status(401).json("Something went wrong");
                 }
                 if(result){
                     const token = jwt.sign({username: user[0].name}, TOKEN_SECRET, {expiresIn: '1d'})
-                    console.log(token);
                     res.status(200).send({token: token});
                 }
                 else{
-                    console.log("Passwords dont match")
                     res.status(400).send("Password not correct");
                 }
             })
