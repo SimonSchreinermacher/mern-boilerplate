@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from 'axios';
+import {validToken} from './Authentication.js';
 
 class Home extends React.Component {
 
     getAllEntries(e){
         e.preventDefault();
 
-        axios.get('/api/user')
+        if(validToken()){
+          axios.get('/api/user')
           .then((res) => {
             for(let x of res.data){
               console.log(x);
@@ -15,6 +17,7 @@ class Home extends React.Component {
           .catch((err) => {
             console.log(err);
           })
+        }
       }
 
     render(){
