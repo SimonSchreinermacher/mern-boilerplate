@@ -1,4 +1,4 @@
-import jwt, { decode } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export function validToken(){
     const authorizationToken = localStorage.getItem('jwtToken');
