@@ -73,15 +73,9 @@ function App(){
     <div>
       <Router>
         <Switch>
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <Route path="/home">
-            <Home></Home>
-          </Route>
-          <Route path="/register">
-            <Register></Register>
-          </Route>
+          <Route path="/login" component={Login}></Route>
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/register" component={Register}></Route>
         </Switch>
       </Router>
     </div>

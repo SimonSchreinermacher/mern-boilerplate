@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 import {validToken} from './Authentication.js';
 
 class Home extends React.Component {
@@ -21,14 +22,22 @@ class Home extends React.Component {
       }
 
     render(){
-        return(
+        if(validToken()){
+          return(
             <div>
                 <h1>Welcome, PROPS_USER</h1>
                 <form onSubmit={this.getAllEntries.bind(this)}>
                     <button type="submit">Get all entries</button>
                 </form>
             </div>
-        );
+          );
+        }
+        else{
+          return(
+            <Redirect to="/login"></Redirect>
+          );
+        }
+        
     }
 }
 

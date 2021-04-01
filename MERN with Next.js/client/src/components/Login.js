@@ -13,12 +13,12 @@ class Login extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-
         let user = {email: this.state.email, password: this.state.password};
         axios.post('/api/user/login', user)
           .then(res => {
             console.log(res.data.token)
             localStorage.setItem('jwtToken', res.data.token);
+            this.props.history.push('/');
           })
           .catch(err => {
             console.log(err);
