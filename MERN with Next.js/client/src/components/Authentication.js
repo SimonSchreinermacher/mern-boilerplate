@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 
 export function validToken(){
     const authorizationToken = localStorage.getItem('jwtToken');
@@ -14,4 +14,12 @@ export function validToken(){
         return false;
         }
     }
+}
+
+export function getUserFromToken(){
+    if(validToken()){
+        const username = jwt.decode(localStorage.getItem('jwtToken')).username;
+        return username;
+    }
+    return("none");
 }

@@ -1,9 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
-import {validToken} from './Authentication.js';
+import {validToken, getUserFromToken} from './Authentication.js';
 
 class Home extends React.Component {
+
+    constructor(props){
+      super(props);
+      this.state = {
+        username: ""
+      }
+    }
 
     getAllEntries(e){
         e.preventDefault();
@@ -21,11 +28,16 @@ class Home extends React.Component {
         }
       }
 
+    componentDidMount(){
+        const username = getUserFromToken();
+        this.setState({username: username});
+    }
+
     render(){
         if(validToken()){
           return(
             <div>
-                <h1>Welcome, PROPS_USER</h1>
+                <h1>Welcome, {this.state.username}</h1>
                 <form onSubmit={this.getAllEntries.bind(this)}>
                     <button type="submit">Get all entries</button>
                 </form>

@@ -32,10 +32,10 @@ export const getAllUsers = async(req, res) => {
     res.status(200).json(allUsers);
 };
 
-//GET /user/name
+//GET /user/NAME
 export const getUserByName = async(req, res) => {
     const {name} = req.params;
-    const user = await User.find({'name' : name})
+    const user = await User.find({'name' : name});
     res.status(200).json(user);
 };
 
