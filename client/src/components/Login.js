@@ -10,6 +10,7 @@ class Login extends React.Component {
         this.state = {
             email : "",
             password: "",
+            error: false
           }
     }
 
@@ -23,10 +24,17 @@ class Login extends React.Component {
           })
           .catch(err => {
             console.log(err);
+            if(err.response.status === 400){
+                this.setState({error: true});
+            }
           })
       }
 
     render(){
+        let errorMessage;
+        if(this.state.error){
+            errorMessage = <p>Email or password incorrect!</p>;
+        }
         if(validToken()){
             return(
                 <Redirect to="/"></Redirect>
@@ -36,6 +44,7 @@ class Login extends React.Component {
         else{
             return(
                 <div>
+                    {errorMessage}
                     <h1>Login:</h1>
                     <form onSubmit = { this.handleSubmit.bind(this)}>
                         <div>
