@@ -1,0 +1,55 @@
+=	MERN Boilerplate with JWT Authentication
+
+This is a fullstack boilerplate using MongoDB, Express, React and NodeJS. It serves as an entry point for the fullstack development of websites and includes a prototype, that
+is already set up to run the website with several common website features.
+
+== Features
+
+****
+- Backend connection to a MongoDB database
+- Database includes a document for User Information
+- Frontend  set up with Login Page, Register Page and Homepage
+- Authentication via email
+****
+
+== Installation
+****
+- Clone the repository with "git clone https://github.com/SimonSchreinermacher/mern-boilerplate.git"
+
+Client Installation steps:
+
+- Navigate to client subfolder
+- Install all dependencies with "npm install" (This process might take some time)
+- Run the Frontend server with "npm start"
+
+Server Installation steps:
+
+- Navigate to server subfolder
+- Add a document called .env and write all required environmental variables (see below)
+- Install all dependencies with "npm install" (Should be faster than client dependencies, but could still take some minutes)
+- Run the Backend server with "npm run start"
+- The backend server is running on localhost:3001
+- The website is now available on localhost:3000, if everything worked correctly, you should be redirected to localhost:3000/login 
+****
+
+
+== Environmental Variables:
+****
+In order to set up the database and the authentication, following variables need to be added to the .env file in the client subfolder: DATABASE_URL, PORT, TOKEN_SECRET
+
+The database url defines, in which database the user information is stored upon registration. Since this is MongoDB, the url would be something like "mongodb://localhost/YOURDATABASEURL"
+
+The port is set to 3001 by default, if you change it, it also needs to be changed in the "proxy" entry in the package.json from the client subfolder.
+
+The token_secret can be set to any value, it determines, how JWT creates its access tokens. For ensuring the security of your application, set it to a 64-bit hexadezimal value
+(128 digits consisting of 0-9,a,b,c,d,e,f)
+
+A fully functional .env file could likes like this:
+
+
+DATABASE_URL=mongodb://localhost/somedatabase
+
+PORT=3001
+
+TOKEN_SECRET=bfc4908cef760886aa54430c667aff4cc1856a3cc5d0cbf592d3362f24157f517082cd581cc33f0b88dea66b18865d9abf05449c26a40024a402324c51a63401
+****
